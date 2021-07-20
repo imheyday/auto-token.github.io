@@ -33,11 +33,11 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a href="javascript:;" class="navbar-brand router-link-active"
+      <a href="../../index.html" class="navbar-brand router-link-active"
         ><img class="justify-content"
           width="30px"
           height="30px"
-          src="assets/main.png"
+          src="../../assets/main.png"
         >
           <g>
             <path
@@ -52,10 +52,10 @@
         </img>
       </a>
       <div id="nav_collapse" class="navbar-collapse collapse">
-        <ul class="navbar-nav col-10">
+        <ul class="navbar-nav col-8">
           <li class="nav-item">
             <a
-              href="javascript:;"
+              href="../../index.html"
               class="nav-link router-link-exact-active router-link-active active"
               aria-current="page"
             >
@@ -63,23 +63,21 @@
             </a>
           </li>
         </ul>
-        <ul class="navbar-nav ml-auto d-flex justify-content-end col-2">
+        <ul class="navbar-nav ml-auto d-flex justify-content-end col-4" id="collapseMargin">
           <li class="nav-item">
-            <a href="javascript:;" class="nav-link router-link-active"
+            <a href="../../index.html" class="nav-link router-link-active"
               >Home</a
             >
           </li>
           <li class="nav-item">
-            <a href="javascript:;" rel="noopener" class="nav-link"><small>컨트랙트 발행</small></a>
+            <a role="button" rel="noopener" class="nav-link" data-bs-toggle="modal" data-bs-target="#contractCreate"><small>컨트랙트 발행</small></a>
           </li>
           <li class="nav-item">
-            <a href="board.html" rel="noopener" class="nav-link"
-              ><small>컨트랙트 제어</small></a
-            >
+            <a role="button" rel="noopener" class="nav-link" data-bs-toggle="modal" data-bs-target="#contract_admin"><small>컨트랙트 오너</small></a>
           </li>
           <li class="nav-item">
-            <a href="javascript:;" class="nav-link" role="button"
-              ><small>contact</small></a
+            <a href="mailto:team.gutalik@gmail.com" class="nav-link" role="button"
+              ><small>문의하기</small></a
             >
           </li>
         </ul>
@@ -188,8 +186,67 @@
       </div>
     </div>
       <!-- 끝 -->
+
+
+
+      <!-- modal -->
+<div class="modal fade" id="contractCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">컨트랙트 생성</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <small>현재는 klaytn만 발행 가능합니다.</small>
+        <br />
+        <small>추가 지원 예정 네트워크:  ethereum, tron, binance chain</small>
+        <div class="list-group" style="margin-top: 15px;">
+          <a href="#" class="list-group-item list-group-item-action">- KIP7(ERC20) 토큰 생성</a>
+          <a href="#" class="list-group-item list-group-item-action">- 수익형 게임(lottery) 생성</a>
+          <a href="#" class="list-group-item list-group-item-action">- Swap(ICO) 컨트랙트 생성</a>
+          <!-- <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">A disabled link item</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- modal -->
+<div class="modal fade" id="contract_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">관리자 패널</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <small>생성한 컨트랙트의 기능을 실행하는 관리자 패널 입니다.</small>
+        <br/>
+        <small>지원 예정 타입: 토큰, NFT, 디파이, 수익형 lottery</small>
+        <br/>
+        <small>지원 예정 네트워크: klaytn, ethereum, tron, binance chain</small>
+        <br/>
+        <small>오픈 예정: </small>
+        <small style="color: red">2021년 8월 25일</small>
+<!--         
+        <div class="list-group">
+          <a href="./use.html" class="list-group-item list-group-item-action">● 클레이튼(준비중)</a>
+          <a href="#" class="list-group-item list-group-item-action">● 이더리움 (준비중)</a>
+          <a href="#" class="list-group-item list-group-item-action">● 바이낸스 (준비중)</a>
+          <a href="#" class="list-group-item list-group-item-action">● 트론 (준비중)</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
     </div>
     <script src="./js/create.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./libs/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./libs/caver.js"></script>
   </body>
 </html>

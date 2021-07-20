@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>contract generator</title>
+    <title>자동 contract 생성기</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,6 +18,8 @@
       rel="stylesheet"
       type="text/css"
     />
+
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
@@ -53,7 +55,7 @@
           </img>
         </a>
         <div id="nav_collapse" class="navbar-collapse collapse">
-          <ul class="navbar-nav col-10">
+          <ul class="navbar-nav col-8">
             <li class="nav-item">
               <a
                 href="../../index.html"
@@ -64,23 +66,21 @@
               </a>
             </li>
           </ul>
-          <ul class="navbar-nav ml-auto d-flex justify-content-end col-2">
+          <ul class="navbar-nav ml-auto d-flex justify-content-end col-4" id="collapseMargin">
             <li class="nav-item">
               <a href="../../index.html" class="nav-link router-link-active"
                 >Home</a
               >
             </li>
             <li class="nav-item">
-              <a href="javascript:;" rel="noopener" class="nav-link"><small>컨트랙트 발행</small></a>
+              <a role="button" rel="noopener" class="nav-link" data-bs-toggle="modal" data-bs-target="#contractCreate"><small>컨트랙트 발행</small></a>
             </li>
             <li class="nav-item">
-              <a href="board.html" rel="noopener" class="nav-link"
-                ><small>컨트랙트 제어</small></a
-              >
+              <a role="button" rel="noopener" class="nav-link" data-bs-toggle="modal" data-bs-target="#contract_admin"><small>컨트랙트 오너</small></a>
             </li>
             <li class="nav-item">
               <a href="mailto:team.gutalik@gmail.com" class="nav-link" role="button"
-                ><small>contact</small></a
+                ><small>문의하기</small></a
               >
             </li>
           </ul>
@@ -90,7 +90,7 @@
 
       <div class="bg_container">
         <div class="container">
-          <h1 class="display-3">클레이튼 토큰 생성하기</h1>
+          <h1>클레이튼 토큰 생성하기</h1>
           <text class="lead">
             토큰을 쉽게 생성하고 관리해보세요!
           </text><br/>
@@ -550,11 +550,11 @@
                                 aria-describedby="__BVID__73__BV_description_"
                                 onchange="changeVal()"
                               >
-                                <option value="TypeSelect">TypeSelect</option>
-                                <option value="테스트TOKEN">테스트 토큰</option>
-                                <option value="PRO TOKEN">프로 토큰</option>
+                                <option value="TypeSelect">==토큰 선택==</option>
+                                <option value="테스트TOKEN">테스트 토큰 (free)</option>
+                                <option value="PRO TOKEN">프로 토큰 (100 klay)</option>
                                 <option value="Listing PRO TOKEN">
-                                  프로(상장용) 토큰
+                                  프로 토큰(상장용) (100 klay)
                                 </option>
                               </select>
                               <small
@@ -611,14 +611,14 @@
                                   >
                                     <p>
                                       본인은 토큰 생성기의 
-                                      <u role="button" tabindex="0"
+                                      <u role="button" 
                                         >사용 약관</u
                                       >을 읽고 이해했으며 동의 합니다.
                                     </p>
                                   </label>
                                 </div>
                                 <small class="text-danger require6">
-                                  The Token Agreement field is required
+                                  해당 약관을 확인후에 생성이 가능 합니다.
                                 </small>
                               </div>
                             </div>
@@ -724,7 +724,7 @@
               <div class="list-group-item">
                 <small>
                   created by
-                  <a href="javascript:;" rel="noopener" class="text-warning">
+                  <a href="mailto:team.gutalik@gmail.com" rel="noopener" class="text-warning">
                     team.gutalik
                   </a>
                 </small>
@@ -734,6 +734,63 @@
         </div>
       </div>
     </div>
+
+
+<!-- modal -->
+<div class="modal fade" id="contractCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">컨트랙트 생성</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <small>현재는 klaytn만 발행 가능합니다.</small>
+        <br />
+        <small>추가 지원 예정 네트워크:  ethereum, tron, binance chain</small>
+        <div class="list-group" style="margin-top: 15px;">
+          <a href="#" class="list-group-item list-group-item-action">- KIP7(ERC20) 토큰 생성</a>
+          <a href="#" class="list-group-item list-group-item-action">- 수익형 게임(lottery) 생성</a>
+          <a href="#" class="list-group-item list-group-item-action">- Swap(ICO) 컨트랙트 생성</a>
+          <!-- <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">A disabled link item</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- modal -->
+<div class="modal fade" id="contract_admin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">관리자 패널</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <small>생성한 컨트랙트의 기능을 실행하는 관리자 패널 입니다.</small>
+        <br/>
+        <small>지원 예정 타입: 토큰, NFT, 디파이, 수익형 lottery</small>
+        <br/>
+        <small>지원 예정 네트워크: klaytn, ethereum, tron, binance chain</small>
+        <br/>
+        <small>오픈 예정: </small>
+        <small style="color: red">2021년 8월 25일</small>
+<!--         
+        <div class="list-group">
+          <a href="./use.html" class="list-group-item list-group-item-action">● 클레이튼(준비중)</a>
+          <a href="#" class="list-group-item list-group-item-action">● 이더리움 (준비중)</a>
+          <a href="#" class="list-group-item list-group-item-action">● 바이낸스 (준비중)</a>
+          <a href="#" class="list-group-item list-group-item-action">● 트론 (준비중)</a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
