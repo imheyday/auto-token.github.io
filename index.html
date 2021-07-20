@@ -1,16 +1,749 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>auto-token</title>
-    
-</head>
-<body>
-    <div>
-        <h1>token generator</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>contract generator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:600,400"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <div class="wrap">
+      <nav class="navbar navbar-dark bg-dark navbar-expand-md p-3">
+        <button
+          type="button"
+          aria-label="Toggle navigation"
+          class="navbar-toggler collapsed"
+          aria-expanded="false"
+          aria-controls="nav_collapse"
+          style="overflow-anchor: none"
+          onclick="sideBar()"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a href="../../index.html" class="navbar-brand router-link-active"
+          ><img class="justify-content"
+            width="30px"
+            height="30px"
+            src="../../assets/main.png"
+          >
+            <g>
+              <path
+                fill-rule="evenodd"
+                d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+              ></path>
+              <path
+                fill-rule="evenodd"
+                d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"
+              ></path>
+            </g>
+          </img>
+        </a>
+        <div id="nav_collapse" class="navbar-collapse collapse">
+          <ul class="navbar-nav col-10">
+            <li class="nav-item">
+              <a
+                href="../../index.html"
+                class="nav-link router-link-exact-active router-link-active active"
+                aria-current="page"
+              >
+                KLO 토큰 자동 생성기
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto d-flex justify-content-end col-2">
+            <li class="nav-item">
+              <a href="../../index.html" class="nav-link router-link-active"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="javascript:;" rel="noopener" class="nav-link"><small>컨트랙트 발행</small></a>
+            </li>
+            <li class="nav-item">
+              <a href="board.html" rel="noopener" class="nav-link"
+                ><small>컨트랙트 제어</small></a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="mailto:team.gutalik@gmail.com" class="nav-link" role="button"
+                ><small>contact</small></a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+      <div class="bg_container">
+        <div class="container">
+          <h1 class="display-3">클레이튼 토큰 생성하기</h1>
+          <text class="lead">
+            토큰을 쉽게 생성하고 관리해보세요!
+          </text><br/>
+          <text class="lead">
+            토큰뿐만 아니라 NFT에서 스왑, 스테이킹, 수익형 게임까지
+          </text><br/>
+            <text class="lead">
+              쉽게 만들고 관리할 수 있습니다!
+            </text><br/>
+          
+        </div>
+      </div>
+
+      <div id="token-generator" class="row mx-0">
+        <div class="mb-3 p-0 col-lg-12 col-xl-10 offset-xl-1">
+          <div class="card bg-transparent border-0">
+            <div class="card-body">
+              <div
+              id="connect"
+                role="alert"
+                aria-live="polite"
+                aria-atomic="true"
+                class="alert alert-danger"
+            
+              >
+                  <a id="textt">토큰 발행을 위해서 kai-kas 월렛을 연결하여야 합니다.</a> 
+                  <div id="addKaikas">
+                    <a href="https://chrome.google.com/webstore/detail/kaikas/jblndlipeogpafnldhgmapagcccfchpi" target='_blank'>kai-kas 설치하기</a>
+                  </div>
+              </div>
+              <form name="form">
+                <fieldset>
+                  <div class="row">
+                    <div class="col-md-6 col-lg-4" style="margin-top: 0px;">
+                      <div class="card mt-3">
+                        <div class="card-header bg-dark text-white p-3">
+                          토큰 디테일
+                        </div>
+                        <div class="card-body" id="tokenWrap">
+                          <span>
+                            <div
+                              role="group"
+                              class="form-group mb-3"
+                              id="__BVID__41"
+                            >
+                              <label
+                                for="tokenName"
+                                class="d-block mb-2"
+                                id="__BVID__41__BV_label_"
+                                >토큰 이름 *</label
+                              >
+                              <div>
+                                <input
+                                  id="tokenName"
+                                  name="tokenName"
+                                  type="text"
+                                  placeholder="Your token name"
+                                  class="form-control form-control-lg"
+                                  maxlength="30"
+                                  aria-describedby="__BVID__41__BV_description_"
+                                  required
+                                  onkeyup="onKey(this)"
+                                  disabled
+                                />
+                                <small class="text-danger require">
+                                  The token name field is required
+                                </small>
+                                <small
+                                  tabindex="-1"
+                                  class="form-text text-muted"
+                                  id="__BVID__41__BV_description_"
+                                  >발행하실 토큰의 이름을 적어주세요.</small
+                                >
+                              </div>
+                            </div>
+                          </span>
+                          <span>
+                            <div
+                              role="group"
+                              class="form-group mb-3"
+                              id="__BVID__44"
+                            >
+                              <label
+                                for="tokenSymbol"
+                                class="d-block mb-2"
+                                id="__BVID__44__BV_label_"
+                                >토큰 심볼(약자) *</label
+                              >
+                              <div>
+                                <input
+                                  id="tokenSymbol"
+                                  name="tokenSymbol"
+                                  type="text"
+                                  placeholder="Your token symbol"
+                                  class="form-control form-control-lg"
+                                  maxlength="10"
+                                  aria-describedby="__BVID__44__BV_description_"
+                                  required
+                                  onkeyup="onKey2(this)"
+                                  disabled
+                                />
+                                <small class="text-danger require2">
+                                  The token name field is required
+                                </small>
+                                <small
+                                  tabindex="-1"
+                                  class="form-text text-muted"
+                                  id="__BVID__44__BV_description_"
+                                  >발행하실 토큰의 약자를 적어주세요. (보통 3-5
+                                  글자)</small
+                                >
+                              </div>
+                            </div>
+                          </span>
+                          <span>
+                            <div
+                              role="group"
+                              class="form-group mb-3"
+                              id="__BVID__47"
+                            >
+                              <label
+                                for="tokenDecimals"
+                                class="d-block mb-2"
+                                id="__BVID__47__BV_label_"
+                                >토큰 소수점 *</label
+                              >
+                              <div>
+                                <input
+                                  id="tokenDecimals"
+                                  name="tokenDecimals"
+                                  type="number"
+                                  placeholder="Your token decimals"
+                                  min="0"
+                                  step="1"
+                                  max="18"
+                                  class="form-control form-control-lg"
+                                  aria-describedby="__BVID__47__BV_description_"
+                                  disabled
+                                  required
+                                  onkeyup="onKey3(this)"
+                                />
+                                <small class="text-danger require3">
+                                  The token name field is required
+                                </small>
+                                <small
+                                  tabindex="-1"
+                                  class="form-text text-muted"
+                                  id="__BVID__47__BV_description_"
+                                  >토큰의 소수점을 정해주세요. 보통은 18을 사용 합니다.
+                                  (0~18)</small
+                                >
+                              </div>
+                            </div>
+                          </span>
+                          <span>
+                            <div
+                              role="group"
+                              class="form-group mb-3"
+                              id="__BVID__50"
+                            >
+                              <label
+                                for="tokenInitialBalance"
+                                class="d-block mb-2"
+                                id="__BVID__50__BV_label_"
+                                >발행량 *</label
+                              >
+                              <div>
+                                <input
+                                  id="tokenInitialBalance"
+                                  name="tokenInitialBalance"
+                                  type="number"
+                                  placeholder="Your token initial supply"
+                                  min="0"
+                                  step="1"
+                                  class="form-control form-control-lg"
+                                  aria-describedby="__BVID__50__BV_description_"
+                                  disabled
+                                  required
+                                  onkeyup="initialVal(this)"
+                                />
+                                <small class="text-danger require4">
+                                  The token name field is required
+                                </small>
+                                <small
+                                  tabindex="-1"
+                                  class="form-text text-muted"
+                                  id="__BVID__50__BV_description_"
+                                  >토큰의 발행량을 적어주세요.</small
+                                >
+                              </div>
+                            </div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4" style="margin-top: 0px;">
+                      <div class="card mt-3">
+                        <div class="card-header bg-dark text-white p-3">
+                          토큰 기능 정보
+                        </div>
+                        <div class="card-body">
+                          <div
+                            role="group"
+                            class="form-group mb-3"
+                            id="__BVID__55"
+                          >
+                            <label
+                              for="supplyType"
+                              class="d-block mb-1"
+                              id="__BVID__55__BV_label_"
+                              >발행량 정보</label
+                            >
+                            <div>
+                              <select
+                                id="supplyType"
+                                name="selected"
+                                disabled="disabled"
+                                class="custom-select custom-select-sm w-100 p-1"
+                                aria-describedby="__BVID__55__BV_description_"
+                              >
+                                <option value="10 TOKEN">10 토큰</option>
+                                <option value="Fixed">제한 없음</option>
+                                <option value="Unlimited">Unlimited</option>
+                                <option value="Capped">Capped</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div
+                            role="group"
+                            class="form-group mb-3"
+                            id="__BVID__57"
+                          >
+                            <label
+                              for="accessType"
+                              class="d-block mb-1"
+                              id="__BVID__57__BV_label_"
+                              >주요기능 접근 권한 설정</label
+                            >
+                            <div>
+                              <select
+                                id="accessType"
+                                disabled="disabled"
+                                class="custom-select custom-select-sm w-100 p-1"
+                                aria-describedby="__BVID__57__BV_description_"
+                              >
+                                <option value="None">없음</option>
+                                <option value="Ownable">주요기능 오너만 사용 가능</option>
+                                <option value="Role Based">Role Based</option>
+                              </select>
+                              <small
+                                tabindex="-1"
+                                class="form-text text-muted"
+                                id="__BVID__57__BV_description_"
+                                >없음, 오너블</small
+                              >
+                            </div>
+                          </div>
+                          <div
+                            role="group"
+                            class="form-group mb-3"
+                            id="__BVID__59"
+                          >
+                            <label
+                              for="transferType"
+                              class="d-block mb-1"
+                              id="__BVID__59__BV_label_"
+                              >정지 기능</label
+                            >
+                            <div>
+                              <select
+                                id="transferType"
+                                disabled="disabled"
+                                class="custom-select custom-select-sm w-100 p-1"
+                                aria-describedby="__BVID__59__BV_description_"
+                              >
+                                <option value="Unstoppable">정지 불가능</option>
+                                <option value="Pausable">정지 가능</option>
+                              </select>
+                              <small
+                                tabindex="-1"
+                                class="form-text text-muted"
+                                id="__BVID__59__BV_description_"
+                                >정지 불가능, 정지 가능</small
+                              >
+                            </div>
+                          </div>
+                          <fieldset class="form-group" id="__BVID__61">
+                          </fieldset>
+                          <fieldset class="form-group" id="__BVID__63">
+                            <div class="mb-3">
+                              <div
+                                class="custom-control custom-switch b-custom-control-sm mb-1"
+                              >
+                                <input
+                                  type="checkbox"
+                                  disabled="disabled"
+                                  class="custom-control-input"
+                                  value="true"
+                                  id="__BVID__64"
+                                />
+                                <label
+                                  class="custom-control-label px-1"
+                                  for="__BVID__64"
+                                >
+                                  커스텀 발행량
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="form-group" id="__BVID__65">
+                            <div class="mb-3">
+                              <div
+                                class="custom-control custom-switch b-custom-control-sm"
+                              >
+                                <input
+                                  type="checkbox"
+                                  disabled="disabled"
+                                  class="custom-control-input"
+                                  value="true"
+                                  id="__BVID__66"
+                                />
+                                <label
+                                  class="custom-control-label px-1"
+                                  for="__BVID__66"
+                                >
+                                  소각
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="form-group" id="__BVID__67">
+                            <div class="mb-3">
+                              <div
+                                class="custom-control custom-switch b-custom-control-sm"
+                              >
+                                <input
+                                  type="checkbox"
+                                  disabled="disabled"
+                                  class="custom-control-input"
+                                  value="true"
+                                  id="__BVID__68"
+                                />
+                                <label
+                                  class="custom-control-label px-1"
+                                  for="__BVID__68"
+                                >
+                                  추가 발행
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="form-group" id="__BVID__69">
+                            <div class="mb-3">
+                              <div
+                                class="custom-control custom-switch b-custom-control-sm"
+                              >
+                                <input
+                                  type="checkbox"
+                                  disabled="disabled"
+                                  class="custom-control-input"
+                                  value="true"
+                                  id="__BVID__70"
+                                />
+                                <label
+                                  class="custom-control-label px-1"
+                                  for="__BVID__70"
+                                >
+                                  정지기능
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="form-group" id="__BVID__71">
+                            <div class="mb-3">
+                              <div
+                                class="custom-control custom-switch b-custom-control-sm"
+                              >
+                                <input
+                                  type="checkbox"
+                                  disabled="disabled"
+                                  class="custom-control-input"
+                                  value="true"
+                                  id="__BVID__72"
+                                />
+                                <label
+                                  class="custom-control-label px-1"
+                                  for="__BVID__72"
+                                >
+                                  개별월렛 타임 락
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="form-group" id="__BVID__75">
+                            <div class="mb-3">
+                              <div
+                                class="custom-control custom-switch b-custom-control-sm"
+                              >
+                                <input
+                                  type="checkbox"
+                                  disabled="disabled"
+                                  class="custom-control-input"
+                                  value="true"
+                                  id="__BVID__73"
+                                />
+                                <label
+                                  class="custom-control-label px-1"
+                                  for="__BVID__73"
+                                >
+                                  오너 변경
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                          <fieldset class="form-group" id="__BVID__76">
+                            <div class="mb-3">
+                              <div
+                                class="custom-control custom-switch b-custom-control-sm"
+                              >
+                                <input
+                                  type="checkbox"
+                                  disabled="disabled"
+                                  class="custom-control-input"
+                                  value="true"
+                                  id="__BVID__74"
+                                />
+                                <label
+                                  class="custom-control-label px-1"
+                                  for="__BVID__74"
+                                >
+                                  개별 월렛 락
+                                </label>
+                              </div>
+                            </div>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 col-lg-4" style="margin-top: 0px;">
+                      <div class="card mt-3">
+                        <div class="card-header bg-dark text-white p-3">
+                          토큰 타입 선택하기
+                        </div>
+                        <div class="card-body">
+                          <div role="group" class="form-group" id="__BVID__73">
+                            <label
+                              for="tokenType"
+                              class="d-block mb-2"
+                              id="__BVID__73__BV_label_"
+                              >토큰 타입 *</label
+                            >
+                            <div class="mb-3">
+                              <select
+                                id="tokenType"
+                                name="tokenType"
+                                class="custom-select custom-select-sm p-1 w-100"
+                                aria-describedby="__BVID__73__BV_description_"
+                                onchange="changeVal()"
+                              >
+                                <option value="TypeSelect">TypeSelect</option>
+                                <option value="테스트TOKEN">테스트 토큰</option>
+                                <option value="PRO TOKEN">프로 토큰</option>
+                                <option value="Listing PRO TOKEN">
+                                  프로(상장용) 토큰
+                                </option>
+                              </select>
+                              <small
+                                tabindex="-1"
+                                class="form-text text-muted"
+                                id="__BVID__73__BV_description_"
+                                >발행하실 토큰 타입을 선택해주세요.</small
+                              >
+                            </div>
+                          </div>
+                          <div
+                            role="alert"
+                            aria-live="polite"
+                            class="alert alert-warning"
+                            id="changeAlert"
+                            style="display: none"
+                          >
+                            <strong>
+                              You selected a TEST Network.
+                              <hr />
+                            </strong>
+                            <span>
+                              To deploy on Main Network you must select Main
+                              Ethereum Network.</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card mt-3">
+                        <div class="card-header bg-dark text-white p-3">
+                          사용 약관
+                        </div>
+                        <div class="card-body">
+                          <span>
+                            <div
+                              role="group"
+                              class="form-group"
+                              id="__BVID__78"
+                            >
+                              <div>
+                                <div
+                                  class="custom-control custom-checkbox b-custom-control-sm d-flex is-invalid"
+                                >
+                                  <input
+                                    id="tokenAgreement"
+                                    type="checkbox"
+                                    name="tokenAgreement"
+                                    class="custom-control-input m-1"
+                                    value="accepted"
+                                    onclick="changeVal03()"
+                                  /><label
+                                    for="tokenAgreement"
+                                    class="custom-control-label checkeRequire"
+                                  >
+                                    <p>
+                                      본인은 토큰 생성기의 
+                                      <u role="button" tabindex="0"
+                                        >사용 약관</u
+                                      >을 읽고 이해했으며 동의 합니다.
+                                    </p>
+                                  </label>
+                                </div>
+                                <small class="text-danger require6">
+                                  The Token Agreement field is required
+                                </small>
+                              </div>
+                            </div>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="card mt-3">
+                        <div class="card-header bg-info text-white p-3">
+                          Transaction
+                        </div>
+                        <div class="list-group payment-box list-group-flush">
+                          <div
+                            class="list-group-item d-flex justify-content-between"
+                          >
+                            <span>
+                              발행 수수료:
+                              <svg
+                                viewBox="0 0 16 16"
+                                width="1em"
+                                height="1em"
+                                focusable="false"
+                                role="img"
+                                aria-label="info circle"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                                class="bi-info-circle b-icon bi"
+                              >
+                                <g>
+                                  <path
+                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                                  ></path>
+                                  <path
+                                    d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                                  ></path>
+                                </g>
+                              </svg>
+                            </span>
+                            <div
+                              class="bg-success d-inline-block p-1 rounded-1 text-white"
+                            >
+                              <span class="commission">0</span>
+                              <span class="commission2"> KLAY</span>
+                            </div>
+                          </div>
+                          <div
+                            class="list-group-item d-flex justify-content-between"
+                          >
+                            <span>
+                              Gas Fee:
+                              <svg
+                                viewBox="0 0 16 16"
+                                width="1em"
+                                height="1em"
+                                focusable="false"
+                                role="img"
+                                aria-label="info circle"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                                class="bi-info-circle b-icon bi"
+                              >
+                                <g>
+                                  <path
+                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                                  ></path>
+                                  <path
+                                    d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                                  ></path>
+                                </g>
+                              </svg>
+                            </span>
+
+                            <div
+                              class="bg-info d-inline-block p-1 rounded-1 text-white"
+                            >
+                              Variable
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                      id="sub"
+                        type="button"
+                        class="btn mt-3 py-3 px-5 text-uppercase btn-success btn-lg btn-block w-100"
+                        onclick="subMit(this)"
+                        disabled
+                      >
+                        kaikas 연결 필요
+                      </button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer container-fluid">
+        <div class="row bg-dark text-light py-4">
+          <div class="col-lg-12 col-xl-8 offset-xl-2">
+            <!-- <hr /> -->
+            <div class="list-group list-group-flush">
+              <div class="list-group-item">
+                <small>
+                  created by
+                  <a href="javascript:;" rel="noopener" class="text-warning">
+                    team.gutalik
+                  </a>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-<script src="./js/index.js"></script>
-</body>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./libs/jquery.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./libs/caver.js"></script>
+
+
+  </body>
 </html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>contract generator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./css/style2.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md p-3">
+      <button
+        type="button"
+        aria-label="Toggle navigation"
+        class="navbar-toggler collapsed"
+        aria-expanded="false"
+        aria-controls="nav_collapse"
+        style="overflow-anchor: none"
+        onclick="sideBar()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a href="javascript:;" class="navbar-brand router-link-active"
+        ><img class="justify-content"
+          width="30px"
+          height="30px"
+          src="assets/main.png"
+        >
+          <g>
+            <path
+              fill-rule="evenodd"
+              d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"
+            ></path>
+          </g>
+        </img>
+      </a>
+      <div id="nav_collapse" class="navbar-collapse collapse">
+        <ul class="navbar-nav col-10">
+          <li class="nav-item">
+            <a
+              href="javascript:;"
+              class="nav-link router-link-exact-active router-link-active active"
+              aria-current="page"
+            >
+              KLO 토큰 자동 생성기
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto d-flex justify-content-end col-2">
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link router-link-active"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" rel="noopener" class="nav-link"><small>컨트랙트 발행</small></a>
+          </li>
+          <li class="nav-item">
+            <a href="board.html" rel="noopener" class="nav-link"
+              ><small>컨트랙트 제어</small></a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="javascript:;" class="nav-link" role="button"
+              ><small>contact</small></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <!--  -->
+    <br/>
+    <br/>
+    <div class="require">
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <br/>
+      <text class="d-flex justify-content-center">Contract 생성중, 영수증 출력까지 종료하지 마세요.</text>
+    </div>
+    <div class="require2">
+      <text class="d-flex justify-content-center">TX ID :</text>
+      <text class="d-flex justify-content-center" id="tx"></text>
+    </div>
+    <!--  -->
+
+    <!-- 시작 -->
+    <div class="paypal">
+
+
+
+      <div class="paypal__header">
+        <div class="paypal__logo-wrapper">
+          <!-- <img src="./assets/main.png" alt="Paypal" class="paypal__logo">
+          <text class="d-flex justify-content-center">token Factory</text> -->
+        </div>
+
+        <div class="paypal__header-info">
+          <!-- <text id="time"></text> -->
+        </div>
+      </div>
+
+      <div class="paypal__subheader-wrapper">
+        <div class="paypal__subheader">
+          <h1 class="paypal__username">토큰 발행이 정상적으로 완료 되었습니다!</h1>
+          <span class="paypal__help-text"></span>
+        </div>
+      </div>
+
+      <div class="paypal__cart">
+        <h4 class="paypal__cart-title">발행 토큰 컨트랙트 정보</h4>
+
+        <ul class="paypal__cart-list">
+          <li class="paypal__cart-item">
+            <span class="paypal__index">1</span>
+            <span class="paypal__item-name">토큰 네임</span>
+            <span class="paypal__item-price" id="tokenName"></span>
+          </li>
+
+          <li class="paypal__cart-item">
+            <span class="paypal__index">2</span>
+            <span class="paypal__item-name">토큰 심볼(약자)</span>
+            <span class="paypal__item-price"id="tokenSymbol"></span>
+          </li>
+
+          <li class="paypal__cart-item">
+            <span class="paypal__index">3</span>
+            <span class="paypal__item-name">토큰 디시멀</span>
+            <span class="paypal__item-price"id="tokenDecimal"></span>
+          </li>
+          <li class="paypal__cart-item">
+            <span class="paypal__index">4</span>
+            <span class="paypal__item-name">토큰 발행량</span>
+            <span class="paypal__item-price"id="tokenBalance"></span>
+          </li>
+          <li class="paypal__cart-item">
+            <span class="paypal__index">5</span>
+            <span class="paypal__item-name">contract address</span>
+            <span class="paypal__item-price"id="tokenAddress"></span>
+          </li>
+          <li class="paypal__cart-item">
+            <span class="paypal__index">6</span>
+            <span class="paypal__item-name">contract owner</span>
+            <span class="paypal__item-price"id="tokenOwner"></span>
+          </li>
+          
+          <li class="paypal__cart-item">
+            <span class="paypal__cart-total"></span>
+            <a id="scope" href="http://google.co.kr" target="_blank"></a>
+          </li>
+          <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-outline-success" onclick="addToken()">kai-kas 토큰등록하기</button>
+          <button type="button" class="btn btn-outline-success" onclick="buyCode()">발행코드 구매</button>
+            <!-- <a href="./assets/bnb.png" download="bnb.png">test</a> -->
+        </div>
+        </ul>
+      </div>
+
+      <div class="paypal__footer">
+        <div class="paypal__logo-wrapper">
+          <img src="../../assets/main.png" alt="logo" class="paypal__logo">
+          <text class="d-flex justify-content-center">token Factory</text>
+        </div>
+        <!-- <text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, nemo dicta totam magnam</text> -->
+        <br/>
+        <text>문의사항은 team.gutalik@gmail.com</text>
+      </div>
+    </div>
+      <!-- 끝 -->
+    </div>
+    <script src="./js/create.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
+</html>

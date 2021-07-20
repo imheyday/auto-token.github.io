@@ -1,0 +1,125 @@
+.bg_container {
+  background: linear-gradient(40deg, #2096ff, #05ffa3);
+  padding: 4rem 2rem;
+}
+.display-3 {
+  font-weight: 500;
+}
+
+
+
+.col-lg-4 {
+  margin: auto;
+  display: table-cell;
+  vertical-align: middle;
+  display: inline-block;
+}
+.list-group-item {
+  background: none !important;
+}
+.lead {
+  font-weight: 600;
+  color: indianred;
+}
+#nav_collapse {
+  display: none;
+}
+
+#nav_collapse.on {
+  display: block;
+}
+
+.form-group .required .control-label:after {
+  content: "*";
+  color: red;
+}
+
+.requi {
+  display: none;
+}
+
+.require.on {
+  display: block;
+}
+
+.require {
+  display: none;
+}
+
+.require.on {
+  display: block;
+}
+
+.require2 {
+  display: none;
+}
+
+.require2.on {
+  display: block;
+}
+
+.require3 {
+  display: none;
+}
+
+.require3.on {
+  display: block;
+}
+
+.require4 {
+  display: none;
+}
+
+.require4.on {
+  display: block;
+}
+
+.require5 {
+  display: none;
+}
+
+.require5.on {
+  display: block;
+}
+
+.require6 {
+  display: none;
+}
+
+.require6.on {
+  display: block;
+}
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  width: 100%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  margin-top: 10px;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.marketing .col-lg-3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.contain {
+  background-size: contain;
+}
+
+
+
+.modal-dialog.modal-fullsize {
+  width: 100%;
+  height: 100%;
+  margin:5
+}
